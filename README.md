@@ -1,12 +1,12 @@
 # Mission-to-Mars
 
-use BeautifulSoup and Splinter to scrape full-resolution images of Mars’s hemispheres and the titles of those images, store the scraped data on a Mongo database, use a web application to display the data, and alter the design of the web app to accommodate these images.
+Use BeautifulSoup and Splinter to scrape full-resolution images of Mars’s hemispheres and the titles of those images, store the scraped data on a Mongo database, use a web application to display the data, and alter the design of the web app to accommodate these images.
 
 ## Deliverable 1: Scrape Full-Resolution Mars Hemisphere Images and Titles
 
 Using BeautifulSoup and Splinter, you’ll scrape full-resolution images of Mars’s hemispheres and the titles of those images.
 
-![dist_summary_before](https://github.com/assaci/School_District_Analysis/blob/main/dist_summary_before.PNG?raw=true)
+![Titles](https://github.com/assaci/Mission-to-Mars/blob/main/screenshot/Titles.PNG?raw=true)
 
 ## Deliverable 2: Update the Web App with Mars Hemisphere Images and Titles
 
