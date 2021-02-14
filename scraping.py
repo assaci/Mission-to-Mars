@@ -17,8 +17,8 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
-        "last_modified": dt.datetime.now()
-        "hemisphere" : hemisphere(browser)
+        "last_modified": dt.datetime.now(),
+        "hemispheres" : hemisphere(browser)
     }
 
     # Stop webdriver and return data
@@ -96,7 +96,7 @@ def mars_facts():
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
 
-def hemisphere():
+def hemisphere(browser):
     # Visit URL 
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
@@ -115,22 +115,25 @@ def hemisphere():
         # find elements on each loop and click on link
         browser.find_by_css('a.product-item h3')[i].click()
         
-        # find Sample image anchor tag and extract the href
-        samp_element = browser.find_link_by_text('Sample').first
-        img_url = samp_element['href']
-        hemisphere["img_url"] = img_url
+        # Add try/except for error handling
+        try:
+            # find Sample image anchor tag and extract the href
+            samp_element = browser.find_link_by_text('Sample').first
+            img_url = samp_element['href']
+            hemisphere["img_url"] = img_url
         
-        # Get hemisphere title
-        title = browser.find_by_css("h2.title").text
-        hemisphere["title"] = title
-        
+            # Get hemisphere title
+            title = browser.find_by_css("h2.title").text
+            hemisphere["title"] = title
+        except AttributeError:
+            return None, None
         # Append hemisphere object to list hemisphere_image_urls
         hemisphere_image_urls.append(hemisphere)
         # Navigate back
         browser.back()
 
-        return hemisphere_image_urls
-        
+    return hemisphere_image_urls
+
 if __name__ == "__main__":
 
     # If running as script, print scraped data
